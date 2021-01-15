@@ -69,6 +69,15 @@ function App() {
         }
     }
 
+    function changeTaskTitle(id: string, title: string, todolistId: string) {
+        let todolistTasks = tasks[todolistId];
+        let task = todolistTasks.find(t => t.id === id);
+        if (task) {
+            task.title = title;
+            setTasks({...tasks});
+        }
+    }
+
     function changeFilter(value: FilterValuesType, todolistId: string) {
         let todolist = todolists.find(tl => tl.id === todolistId);
         if (todolist) {
@@ -123,6 +132,7 @@ function App() {
                         changeTaskStatus={changeStatus}
                         filter={tl.filter}
                         removeTodolist={removeTodolist}
+                        changeTaskTitle={changeTaskTitle}
                     />
                 })
             }
