@@ -1,5 +1,6 @@
 import {FilterValuesType, TasksStateType, TodolistType} from "../App";
 import {v1} from "uuid";
+import {AddTodolistActionType, RemoveTodolistActionType} from "./todolists-reducer";
 
 type ActionType = {
     type: string
@@ -33,7 +34,8 @@ export type ChangeTaskTitlesActionType = {
 }
 
 
-type ActionsType = RemoveTaskActionType |AddTaskActionType | ChangeTaskStatusActionType | ChangeTaskTitlesActionType
+type ActionsType = RemoveTaskActionType |AddTaskActionType | ChangeTaskStatusActionType
+    | ChangeTaskTitlesActionType | AddTodolistActionType | RemoveTodolistActionType
 
 export const tasksReducer = (state: TasksStateType, action: ActionsType): TasksStateType => {
     switch (action.type) {
@@ -68,8 +70,18 @@ export const tasksReducer = (state: TasksStateType, action: ActionsType): TasksS
             }
             return copyState
         }
+        case "ADD-TODOLIST": {
+            const stateCopy = {...state}
+            stateCopy[action.todolistId] = []
+            return stateCopy
+        }
+        case "REMOVE-TODOLIST": {
+            const stateCopy = {...state}
+            delete stateCopy[action.id]
+            return stateCopy
+        }
 
-          default:
+        default:
             throw new Error('This type doesnt exist')
     }
 }
