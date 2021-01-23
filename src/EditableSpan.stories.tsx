@@ -1,30 +1,12 @@
-import React from 'react';
-
-import { Story, Meta } from '@storybook/react/types-6-0';
-
-import {action} from "@storybook/addon-actions";
-import {EditableSpan, EditableSpanPropsType} from "./EditableSpan";
-
-
+import React from 'react'
+import {action} from '@storybook/addon-actions'
+import {EditableSpan} from './EditableSpan'
 
 export default {
-    title: 'Todolists/EditableSpan',
-    component: EditableSpan,
-    argTypes: {
-        onChange: {
-            description: 'Changed value EditableSpan'
-        },
-        value: {
-            defaultValue: 'HTML',
-            description: "Start value to EditableSpan"
-        }
-    },
-} as Meta;
+    title: 'EditableSpan Stories',
+    component: EditableSpan
+}
 
-
-const Template: Story<EditableSpanPropsType  > = (args) =><EditableSpan {...args}/>;
-
-export const EditableSpanExample = Template.bind({});
-EditableSpanExample.args = {
-    onChange: action('Value changed'),
-};
+export const EditableSpanFormBaseExample = (props: any) => {
+    return (<EditableSpan value={"StartValue"} onChange={action("value changed")} />)
+}
