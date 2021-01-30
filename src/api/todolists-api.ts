@@ -1,10 +1,12 @@
-import axios from 'axios'
+// @ts-ignore
+import axios from "axios";
+
 
 const instance = axios.create({
     baseURL: 'https://social-network.samuraijs.com/api/1.1/',
     withCredentials: true,
     headers: {
-        'API-KEY': '8f2534e2-22a4-4052-894e-a66c04807482'
+        'API-KEY': 'fe58a20b-6990-4fee-a414-1ab0afb5a9c0'
     }
 })
 
@@ -40,7 +42,24 @@ export const todolistsAPI = {
     }
 }
 
+
+export const authAPI = {
+    login(data: LoginParamsType ) {
+        return instance.post<ResponseType<{userId: number}>>(`auth/login`, data);
+    }
+}
+
+
+
 // types
+
+export type LoginParamsType = {
+    rememberMe: boolean
+    email: string
+    password: string
+    captcha?: string
+}
+
 export type TodolistType = {
     id: string
     title: string
