@@ -21,6 +21,9 @@ type PropsType = {
     demo?: boolean
 }
 
+
+
+
 export const TodolistsList: React.FC<PropsType> = ({demo = false}) => {
     const todolists = useSelector<AppRootStateType, Array<TodolistDomainType>>(state => state.todolists)
     const tasks = useSelector<AppRootStateType, TasksStateType>(state => state.tasks)
@@ -56,7 +59,7 @@ export const TodolistsList: React.FC<PropsType> = ({demo = false}) => {
     }, [])
 
     const changeFilter = useCallback(function (value: FilterValuesType, todolistId: string) {
-        const action = changeTodolistFilterAC(todolistId, value)
+        const action = changeTodolistFilterAC({id: todolistId, filter: value})
         dispatch(action)
     }, [])
 
