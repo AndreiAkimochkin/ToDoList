@@ -63,7 +63,7 @@ export type MeResponseType = {
     id: number
     email: string
     login: string
-    }
+}
 
 export type LoginParamsType = {
     rememberMe: boolean

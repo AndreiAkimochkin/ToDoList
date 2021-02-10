@@ -22,7 +22,7 @@ const slice = createSlice( {
         changeTodolistTitleAC(state, action: PayloadAction<{id: string, title: string}>) {
             const index = state.findIndex(tl => tl.id === action.payload.id)
             state[index].title = action.payload.title
-           },
+        },
         changeTodolistFilterAC(state,action: PayloadAction<{id: string, filter: FilterValuesType}>) {
             const index = state.findIndex(tl => tl.id === action.payload.id)
             state[index].filter = action.payload.filter
